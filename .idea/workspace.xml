@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a3bf5a13-661a-40c9-8d02-d5cb3614c3ae" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jupyter Notebook" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="JupyterTrust" id="2a5da937-953a-45e2-9544-f96c659ff6ca">
+    <option name="files">
+      <option value=".developMe_Full.ipynb" />
+      <option value=".developMe_Oscillate.ipynb" />
+      <option value=".developMe_RK4.ipynb" />
+      <option value=".developMe_RK4_TE.ipynb" />
+      <option value="developMe.ipynb" />
+    </option>
+  </component>
+  <component name="ProjectId" id="1d4TmZES8Prua6moBbaF3sLe2fx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../13-TensorFlow tutorial" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="greyBoxSaurabh" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="greyBoxSaurabh" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\saura\Google Drive\Princeton\Research\Codes\greyBoxSaurabh" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="greyBoxSaurabh" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\saura\anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="true" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="functions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="greyBoxSaurabh" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\saura\anaconda3\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/functions.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="true" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.functions" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a3bf5a13-661a-40c9-8d02-d5cb3614c3ae" name="Default Changelist" comment="" />
+      <created>1591683524670</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1591683524670</updated>
+      <workItem from="1591683540554" duration="7629000" />
+      <workItem from="1591861547496" duration="595000" />
+      <workItem from="1591862338697" duration="872000" />
+      <workItem from="1591863354121" duration="5270000" />
+      <workItem from="1592201429703" duration="1235000" />
+      <workItem from="1592205216750" duration="11411000" />
+      <workItem from="1592299902030" duration="13705000" />
+      <workItem from="1592378483527" duration="4584000" />
+      <workItem from="1592389577572" duration="8919000" />
+      <workItem from="1592465046437" duration="332000" />
+      <workItem from="1592465391312" duration="147000" />
+      <workItem from="1592465553540" duration="62000" />
+      <workItem from="1592465627542" duration="7963000" />
+      <workItem from="1592533913222" duration="17030000" />
+      <workItem from="1592655298015" duration="117000" />
+      <workItem from="1592655432284" duration="32800000" />
+      <workItem from="1593054133180" duration="12082000" />
+      <workItem from="1594003362765" duration="14397000" />
+      <workItem from="1594299196905" duration="5535000" />
+      <workItem from="1594627391356" duration="204000" />
+      <workItem from="1594627608564" duration="10015000" />
+      <workItem from="1594638804784" duration="31670000" />
+      <workItem from="1594795272516" duration="5894000" />
+      <workItem from="1595251864066" duration="105000" />
+      <workItem from="1596458727607" duration="3321000" />
+      <workItem from="1596637269605" duration="3916000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592465610503">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1592465610503" />
+    <state x="371" y="130" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1592297328385">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="130" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1280.680@0.0.1280.680" timestamp="1592297328385" />
+    <state x="691" y="91" key="#xdebugger.evaluate" timestamp="1594709774434">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="691" y="91" key="#xdebugger.evaluate/0.0.1280.680@0.0.1280.680" timestamp="1594709774434" />
+    <state x="842" y="204" key="FileChooserDialogImpl" timestamp="1596465925566">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="421" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1595251966388" />
+    <state x="842" y="204" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1596465925566" />
+    <state width="2517" height="39" key="GridCell.Tab.0.bottom" timestamp="1596638860957">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1237" height="2" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1594797211706" />
+    <state width="1237" height="207" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594134402214" />
+    <state width="2517" height="39" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1596638860957" />
+    <state width="1873" height="29" key="GridCell.Tab.0.bottom/0.1080.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1594658057593" />
+    <state width="2517" height="39" key="GridCell.Tab.0.center" timestamp="1596638860957">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1237" height="2" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1594797211706" />
+    <state width="1237" height="207" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594134402213" />
+    <state width="2517" height="39" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1596638860957" />
+    <state width="1873" height="29" key="GridCell.Tab.0.center/0.1080.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1594658057592" />
+    <state width="2517" height="39" key="GridCell.Tab.0.left" timestamp="1596638860956">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1237" height="2" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1594797211706" />
+    <state width="1237" height="207" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594134402211" />
+    <state width="2517" height="39" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1596638860956" />
+    <state width="1873" height="29" key="GridCell.Tab.0.left/0.1080.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1594658057592" />
+    <state width="2517" height="39" key="GridCell.Tab.0.right" timestamp="1596638860957">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1237" height="2" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1594797211706" />
+    <state width="1237" height="207" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594134402213" />
+    <state width="2517" height="39" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1596638860957" />
+    <state width="1873" height="29" key="GridCell.Tab.0.right/0.1080.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1594658057593" />
+    <state width="1237" height="2" key="GridCell.Tab.1.bottom" timestamp="1594742749448">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="2" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1594742749448" />
+    <state width="1237" height="207" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594134402216" />
+    <state width="1237" height="2" key="GridCell.Tab.1.center" timestamp="1594742749448">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="2" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1594742749448" />
+    <state width="1237" height="207" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594134402215" />
+    <state width="1237" height="2" key="GridCell.Tab.1.left" timestamp="1594742749448">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="2" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1594742749448" />
+    <state width="1237" height="207" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594134402215" />
+    <state width="1237" height="2" key="GridCell.Tab.1.right" timestamp="1594742749448">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1237" height="2" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1594742749448" />
+    <state width="1237" height="207" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594134402216" />
+    <state x="288" y="0" key="SettingsEditor" timestamp="1596466090238">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="144" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1592389532262" />
+    <state x="288" y="0" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1596466090238" />
+    <state x="303" y="1" width="670" height="58" key="search.everywhere.popup" timestamp="1594019464995">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="670" height="58" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1594019464995" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/functions.py</url>
+          <line>214</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/functions.py</url>
+          <line>252</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/functions.py</url>
+          <line>241</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/functions_Oscillate.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/functions_Oscillate.py</url>
+          <line>72</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+          <url>file://$PROJECT_DIR$/.developMe_Oscillate.ipynb</url>
+          <line>42</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+          <url>file://$PROJECT_DIR$/.developMe_Full.ipynb</url>
+          <line>390</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+          <url>file://$PROJECT_DIR$/.developMe_Full.ipynb</url>
+          <line>418</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/greyBoxSaurabh$functions.coverage" NAME="functions Coverage Results" MODIFIED="1592664670686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
