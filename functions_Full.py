@@ -43,12 +43,32 @@ def chemostat_full(t, var, par, u):
 
     return out
 
+def light_fun(t):
+    try:
+        if t<96*4:
+            if t<48*4:
+                return 1
+            else:
+                return 0
+        return np.random.uniform(0, 1)
+    except:
+        print('time failed at:', t)
+        return .5
+
+
 def ODE_int(steps, t_step, t_points, par):
     pbar = tqdm(total=steps, desc='Time Stepping')
     t, X, A, B, S, E_A, E_B, R_A, R_B, u = np.zeros((10, steps, t_points))
     pbar.update()
     t_start = 0
-    init = [1, 0, 0, 0, 0, 0, 0, 0]
+    init = np.array([1.635e-1,
+               5.159,
+               2.170,
+               2.668e-1,
+               1.666,
+               9.883e-2,
+               1.7881,
+               8.85e-2])
 
     initialize = True
     my_u = [1]
@@ -66,7 +86,7 @@ def ODE_int(steps, t_step, t_points, par):
         # else:
         #     my_u = np.zeros(t_span.shape) + np.random.uniform(0.5, 1)
 
-        my_u = np.zeros(t_span.shape) + np.random.uniform(0, 1)
+        my_u = np.zeros(t_span.shape) + light_fun(t_start)
 
         # my_u = np.zeros(t_span.shape) + np.random.choice([0, 1])
 
