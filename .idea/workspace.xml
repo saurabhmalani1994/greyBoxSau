@@ -29,13 +29,16 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="JupyterTrust" id="2a5da937-953a-45e2-9544-f96c659ff6ca">
     <option name="files">
-      <option value=".developMe_Full.ipynb" />
-      <option value=".developMe_Oscillate.ipynb" />
-      <option value=".developMe_RK4.ipynb" />
       <option value=".developMe_RK4_TE.ipynb" />
       <option value="developMe.ipynb" />
+      <option value="developMe_Full.ipynb" />
+      <option value="developMe_Oscillate.ipynb" />
+      <option value="developMe_RK4.ipynb" />
     </option>
   </component>
   <component name="ProjectId" id="1d4TmZES8Prua6moBbaF3sLe2fx" />
@@ -48,7 +51,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../13-TensorFlow tutorial" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -150,6 +153,7 @@
       <workItem from="1595251864066" duration="105000" />
       <workItem from="1596458727607" duration="3321000" />
       <workItem from="1596637269605" duration="3916000" />
+      <workItem from="1596648167571" duration="806000" />
     </task>
     <servers />
   </component>
@@ -169,11 +173,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="691" y="91" key="#xdebugger.evaluate/0.0.1280.680@0.0.1280.680" timestamp="1594709774434" />
-    <state x="842" y="204" key="FileChooserDialogImpl" timestamp="1596465925566">
+    <state x="842" y="204" key="FileChooserDialogImpl" timestamp="1596648196693">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="421" y="99" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1595251966388" />
-    <state x="842" y="204" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1596465925566" />
+    <state x="842" y="204" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1596648196693" />
     <state width="2517" height="39" key="GridCell.Tab.0.bottom" timestamp="1596638860957">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -222,11 +226,11 @@
     </state>
     <state width="1237" height="2" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1594742749448" />
     <state width="1237" height="207" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594134402216" />
-    <state x="288" y="0" key="SettingsEditor" timestamp="1596466090238">
+    <state x="288" y="0" key="SettingsEditor" timestamp="1596648961748">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="144" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1592389532262" />
-    <state x="288" y="0" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1596466090238" />
+    <state x="288" y="0" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1596648961748" />
     <state x="303" y="1" width="670" height="58" key="search.everywhere.popup" timestamp="1594019464995">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -261,17 +265,17 @@
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
-          <url>file://$PROJECT_DIR$/.developMe_Oscillate.ipynb</url>
+          <url>file://$PROJECT_DIR$/developMe_Oscillate.ipynb</url>
           <line>42</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
-          <url>file://$PROJECT_DIR$/.developMe_Full.ipynb</url>
+          <url>file://$PROJECT_DIR$/developMe_Full.ipynb</url>
           <line>390</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
-          <url>file://$PROJECT_DIR$/.developMe_Full.ipynb</url>
+          <url>file://$PROJECT_DIR$/developMe_Full.ipynb</url>
           <line>418</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
