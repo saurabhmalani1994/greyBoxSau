@@ -45,11 +45,11 @@ def chemostat_full(t, var, par, u):
 
 def light_fun(t):
     try:
-        if t<96*4:
-            if t<48*4:
-                return 1
-            else:
+        if t<96:
+            if t<48:
                 return 0
+            else:
+                return 1
         return np.random.uniform(0, 1)
     except:
         print('time failed at:', t)
@@ -92,7 +92,7 @@ def ODE_int(steps, t_step, t_points, par):
 
         u[j,:] = my_u[:-1]
 
-        sol = solve_ivp(chemostat_full, [t_start, t_end], init, t_eval=t_span, args=[par, my_u[0]], max_step = t_max_step / 5, method='BDF')
+        sol = solve_ivp(chemostat_full, [t_start, t_end], init, t_eval=t_span, args=[par, my_u[0]], max_step = t_max_step / 10, method='BDF')
         t[j,:] = sol.t[:-1]
         X[j,:], A[j,:], B[j,:], S[j,:], E_A[j,:], E_B[j,:], R_A[j,:], R_B[j,:] = sol.y[:,:-1]
 
