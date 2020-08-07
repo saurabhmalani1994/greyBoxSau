@@ -75,21 +75,18 @@ def ODE_int(steps, t_step, t_points, par):
     np.random.seed(1234)
     for j in range(np.int(steps)):
         t_end = t_start + t_step
+
+
         if initialize:
             t_end = 1000
+            my_u = 0.5
         pbar.update()
         t_span = np.linspace(t_start, t_end, t_points + 1, endpoint=True)
         t_max_step = t_span[1] - t_span[0]
 
-        # if my_u[-1] > 0.5:
-        #     my_u = np.zeros(t_span.shape) + np.random.uniform(0,0.5)
-        # else:
-        #     my_u = np.zeros(t_span.shape) + np.random.uniform(0.5, 1)
-
         my_u = np.zeros(t_span.shape) + light_fun(t_start)
-
-        # my_u = np.zeros(t_span.shape) + np.random.choice([0, 1])
-
+        if initialize:
+            my_u = np.zeros(t_span.shape) + 0.5
         u[j,:] = my_u[:-1]
 
         sol = solve_ivp(chemostat_full, [t_start, t_end], init, t_eval=t_span, args=[par, my_u[0]], max_step = t_max_step / 10, method='BDF')
