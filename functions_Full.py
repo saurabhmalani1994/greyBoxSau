@@ -47,9 +47,9 @@ def light_fun(t):
     try:
         if t<96:
             if t<48:
-                return 0
-            else:
                 return 1
+            else:
+                return 0
         return np.random.uniform(0, 1)
     except:
         print('time failed at:', t)
@@ -337,6 +337,101 @@ class RK4_Integrator_Model_TE(tf.keras.Model):
         return outputs
 
 class RK4_Integrator_Model_TE_7(tf.keras.Model):
+    def __init__(self, HL_Nodes, Activation, time_embed):
+
+        super(RK4_Integrator_Model_TE_7, self).__init__()
+        # self.k23_Layer = RK_Layer(2, h)
+        # self.k4_Layer = RK_Layer(4, h)
+        # self.sumLayer = sum_Layer(h)
+
+
+        self.time_embed = time_embed
+        # Hidden Layers
+        self.ANN7 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+        self.ANN6 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+        self.ANN5 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+        self.ANN4 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+        self.ANN3 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+        self.ANN2 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+        self.ANN1 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+
+        #Output of Dense Layers
+        self.ANNout = tf.keras.layers.Dense(4)
+
+    def call(self, inputs, training=None, mask=None):
+        selected_inputs1 = inputs[:, :-1]
+        h = inputs[:, -1]
+        h = tf.reshape(h, (-1, 1))
+        # First Pass
+        k1 = self.ANNout(
+                 self.ANN1(
+                 self.ANN2(
+                 self.ANN3(
+                 self.ANN4(
+                 self.ANN5(
+                 self.ANN6(
+                 self.ANN7(
+                     selected_inputs1))))))))
+        t0 = (selected_inputs1[:,:-5] + selected_inputs1[:,5:]) / 2
+        t1 = selected_inputs1[:, -5:-1] + k1 * h / 2
+        t2 = selected_inputs1[:, -1]
+        t2 = tf.reshape(t2, (-1, 1))
+        selected_inputs2 = tf.concat([t0, t1, t2], axis=1)
+        # Second Pass
+        k2 = self.ANNout(
+                 self.ANN1(
+                 self.ANN2(
+                 self.ANN3(
+                 self.ANN4(
+                 self.ANN5(
+                 self.ANN6(
+                 self.ANN7(
+                     selected_inputs2))))))))
+
+        t0 = (selected_inputs1[:,:-5] + selected_inputs1[:,5:]) / 2
+        t1 = selected_inputs1[:, -5:-1] + k2 * h / 2
+        t2 = selected_inputs1[:, -1]
+        t2 = tf.reshape(t2, (-1, 1))
+        selected_inputs3 = tf.concat([t0, t1, t2], axis=1)
+
+        # Third Pass
+        k3 = self.ANNout(
+                 self.ANN1(
+                 self.ANN2(
+                 self.ANN3(
+                 self.ANN4(
+                 self.ANN5(
+                 self.ANN6(
+                 self.ANN7(
+                     selected_inputs3))))))))
+
+        t0 = selected_inputs1[:,5:]
+        t1 = selected_inputs1[:, -5:-1] + k3 * h
+        t2 = selected_inputs1[:, -1]
+        t2 = tf.reshape(t2, (-1, 1))
+        selected_inputs4 = tf.concat([t0, t1, t2], axis=1)
+
+
+        # Fourth Pass
+        k4 = self.ANNout(
+                 self.ANN1(
+                 self.ANN2(
+                 self.ANN3(
+                 self.ANN4(
+                 self.ANN5(
+                 self.ANN6(
+                 self.ANN7(
+                     selected_inputs4))))))))
+
+        # RK4 Output for Prediction
+
+        outputs = selected_inputs1[:,-5:-1] + (1/6) * h * (k1 + 2 * k2 + 2 * k3 + k4)
+
+
+        return outputs
+
+
+class RK4_Integrator_Model_TE_7_CL(tf.keras.Model):
     def __init__(self, HL_Nodes, Activation, time_embed):
 
         super(RK4_Integrator_Model_TE_7, self).__init__()
