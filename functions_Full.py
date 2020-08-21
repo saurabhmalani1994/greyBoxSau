@@ -103,14 +103,14 @@ def ODE_int(steps, t_step, t_points, par):
     return t, X, A, B, S, E_A, E_B, R_A, R_B, u
 
 class RK4_Integrator_Model(tf.keras.Model):
-    def __init__(self, HL_Nodes, Activation):
+    def __init__(self, HL_Nodes, delay, Activation):
 
         super(RK4_Integrator_Model, self).__init__()
         # self.k23_Layer = RK_Layer(2, h)
         # self.k4_Layer = RK_Layer(4, h)
         # self.sumLayer = sum_Layer(h)
 
-
+        self.delay = delay
         # self.h = h
         # Hidden Layers
         self.ANN3 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
@@ -168,7 +168,6 @@ class RK4_Integrator_Model(tf.keras.Model):
         # RK4 Output for Prediction
 
         outputs = inputs[:,:-2] + (1/6) * h * (k1 + 2 * k2 + 2 * k3 + k4)
-
 
         return outputs
 
@@ -432,15 +431,16 @@ class RK4_Integrator_Model_TE_7(tf.keras.Model):
 
 
 class RK4_Integrator_Model_TE_7_CL(tf.keras.Model):
-    def __init__(self, HL_Nodes, Activation, time_embed):
+    def __init__(self, HL_Nodes, Activation, time_embed, delay):
 
-        super(RK4_Integrator_Model_TE_7, self).__init__()
+        super(RK4_Integrator_Model_TE_7_CL, self).__init__()
         # self.k23_Layer = RK_Layer(2, h)
         # self.k4_Layer = RK_Layer(4, h)
         # self.sumLayer = sum_Layer(h)
 
 
         self.time_embed = time_embed
+        self.delay = delay
         # Hidden Layers
         self.ANN7 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
         self.ANN6 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
@@ -453,8 +453,15 @@ class RK4_Integrator_Model_TE_7_CL(tf.keras.Model):
         #Output of Dense Layers
         self.ANNout = tf.keras.layers.Dense(4)
 
+        self.indices = np.sort(np.array([np.arange(-1,-self.delay*self.time_embed*5,-self.delay*5),
+                                    np.arange(-2,-self.delay*self.time_embed*5,-self.delay*5),
+                                    np.arange(-3,-self.delay*self.time_embed*5,-self.delay*5),
+                                    np.arange(-4,-self.delay*self.time_embed*5,-self.delay*5),
+                                    np.arange(-5, -self.delay * self.time_embed * 5, -self.delay * 5)]).flatten())
+
     def call(self, inputs, training=None, mask=None):
-        selected_inputs1 = inputs[:, :-1]
+        input_var = inputs[:, :-1]
+        selected_inputs1 = tf.gather(input_var,self.indices,axis=1)
         h = inputs[:, -1]
         h = tf.reshape(h, (-1, 1))
         # First Pass
@@ -467,11 +474,12 @@ class RK4_Integrator_Model_TE_7_CL(tf.keras.Model):
                  self.ANN6(
                  self.ANN7(
                      selected_inputs1))))))))
-        t0 = (selected_inputs1[:,:-5] + selected_inputs1[:,5:]) / 2
-        t1 = selected_inputs1[:, -5:-1] + k1 * h / 2
-        t2 = selected_inputs1[:, -1]
+        t0 = (input_var[:,:-5] + input_var[:,5:]) / 2
+        t1 = input_var[:, -5:-1] + k1 * h / 2
+        t2 = input_var[:, -1]
         t2 = tf.reshape(t2, (-1, 1))
         selected_inputs2 = tf.concat([t0, t1, t2], axis=1)
+        selected_inputs2 = tf.gather(selected_inputs2,self.indices,axis=1)
         # Second Pass
         k2 = self.ANNout(
                  self.ANN1(
@@ -483,11 +491,12 @@ class RK4_Integrator_Model_TE_7_CL(tf.keras.Model):
                  self.ANN7(
                      selected_inputs2))))))))
 
-        t0 = (selected_inputs1[:,:-5] + selected_inputs1[:,5:]) / 2
-        t1 = selected_inputs1[:, -5:-1] + k2 * h / 2
-        t2 = selected_inputs1[:, -1]
+        t0 = (input_var[:,:-5] + input_var[:,5:]) / 2
+        t1 = input_var[:, -5:-1] + k2 * h / 2
+        t2 = input_var[:, -1]
         t2 = tf.reshape(t2, (-1, 1))
         selected_inputs3 = tf.concat([t0, t1, t2], axis=1)
+        selected_inputs3 = tf.gather(selected_inputs3,self.indices,axis=1)
 
         # Third Pass
         k3 = self.ANNout(
@@ -500,11 +509,12 @@ class RK4_Integrator_Model_TE_7_CL(tf.keras.Model):
                  self.ANN7(
                      selected_inputs3))))))))
 
-        t0 = selected_inputs1[:,5:]
-        t1 = selected_inputs1[:, -5:-1] + k3 * h
-        t2 = selected_inputs1[:, -1]
+        t0 = input_var[:,5:]
+        t1 = input_var[:, -5:-1] + k3 * h
+        t2 = input_var[:, -1]
         t2 = tf.reshape(t2, (-1, 1))
         selected_inputs4 = tf.concat([t0, t1, t2], axis=1)
+        selected_inputs4 = tf.gather(selected_inputs4,self.indices,axis=1)
 
 
         # Fourth Pass
@@ -520,7 +530,5 @@ class RK4_Integrator_Model_TE_7_CL(tf.keras.Model):
 
         # RK4 Output for Prediction
 
-        outputs = selected_inputs1[:,-5:-1] + (1/6) * h * (k1 + 2 * k2 + 2 * k3 + k4)
-
-
+        outputs = input_var[:,-5:-1] + (1/6) * h * (k1 + 2 * k2 + 2 * k3 + k4)
         return outputs
