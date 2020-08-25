@@ -275,6 +275,7 @@ class RK4_Integrator_Model_TE(tf.keras.Model):
 
 
         self.time_embed = time_embed
+        self.delay = delay
         # Hidden Layers
         self.ANN3 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
         self.ANN2 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
@@ -283,56 +284,68 @@ class RK4_Integrator_Model_TE(tf.keras.Model):
         #Output of Dense Layers
         self.ANNout = tf.keras.layers.Dense(4)
 
+        self.indices = np.sort(np.array([np.arange(0,(self.delay*(self.time_embed-1)+1)*5,self.delay*5),
+                                    np.arange(1,(self.delay*(self.time_embed-1)+1)*5,self.delay*5),
+                                    np.arange(2,(self.delay*(self.time_embed-1)+1)*5,self.delay*5),
+                                    np.arange(3,(self.delay*(self.time_embed-1)+1)*5,self.delay*5),
+                                    np.arange(4,(self.delay*(self.time_embed-1)+1)*5, self.delay * 5)]).flatten())
+
     def call(self, inputs, training=None, mask=None):
-        selected_inputs1 = inputs[:, :-1]
+        input_var = inputs[:, :-1]
+        selected_inputs1 =tf.transpose(tf.gather(tf.transpose(input_var),self.indices))
         h = inputs[:, -1]
         h = tf.reshape(h, (-1, 1))
         # First Pass
         k1 = self.ANNout(
                  self.ANN1(
                  self.ANN2(
-                 self.ANN3(selected_inputs1))))
-        t0 = (selected_inputs1[:,:-5] + selected_inputs1[:,5:]) / 2
-        t1 = selected_inputs1[:, -5:-1] + k1 * h / 2
-        t2 = selected_inputs1[:, -1]
+                 self.ANN3(
+                     selected_inputs1))))
+        t0 = (input_var[:,:-5] + input_var[:,5:]) / 2
+        t1 = input_var[:, -5:-1] + k1 * h / 2
+        t2 = input_var[:, -1]
         t2 = tf.reshape(t2, (-1, 1))
         selected_inputs2 = tf.concat([t0, t1, t2], axis=1)
+        selected_inputs2 = tf.gather(selected_inputs2,self.indices,axis=1)
         # Second Pass
         k2 = self.ANNout(
                  self.ANN1(
                  self.ANN2(
-                 self.ANN3(selected_inputs2))))
+                 self.ANN3(
+                     selected_inputs2))))
 
-        t0 = (selected_inputs1[:,:-5] + selected_inputs1[:,5:]) / 2
-        t1 = selected_inputs1[:, -5:-1] + k2 * h / 2
-        t2 = selected_inputs1[:, -1]
+        t0 = (input_var[:,:-5] + input_var[:,5:]) / 2
+        t1 = input_var[:, -5:-1] + k2 * h / 2
+        t2 = input_var[:, -1]
         t2 = tf.reshape(t2, (-1, 1))
         selected_inputs3 = tf.concat([t0, t1, t2], axis=1)
+        selected_inputs3 = tf.gather(selected_inputs3,self.indices,axis=1)
 
         # Third Pass
         k3 = self.ANNout(
                  self.ANN1(
                  self.ANN2(
-                 self.ANN3(selected_inputs3))))
+                 self.ANN3(
+                     selected_inputs3))))
 
-        t0 = selected_inputs1[:,5:]
-        t1 = selected_inputs1[:, -5:-1] + k3 * h
-        t2 = selected_inputs1[:, -1]
+        t0 = input_var[:,5:]
+        t1 = input_var[:, -5:-1] + k3 * h
+        t2 = input_var[:, -1]
         t2 = tf.reshape(t2, (-1, 1))
         selected_inputs4 = tf.concat([t0, t1, t2], axis=1)
+        selected_inputs4 = tf.gather(selected_inputs4,self.indices,axis=1)
 
 
         # Fourth Pass
         k4 = self.ANNout(
                  self.ANN1(
                  self.ANN2(
-                 self.ANN3(selected_inputs4))))
+                 self.ANN3(
+                     selected_inputs4))))
 
         # RK4 Output for Prediction
 
-        outputs = selected_inputs1[:,-5:-1] + (1/6) * h * (k1 + 2 * k2 + 2 * k3 + k4)
-
-
+        outputs = input_var[:,-5:-1] + (1/6) * h * (k1 + 2 * k2 + 2 * k3 + k4)
         return outputs
 
 class RK4_Integrator_Model_TE_7(tf.keras.Model):
@@ -453,15 +466,15 @@ class RK4_Integrator_Model_TE_7_CL(tf.keras.Model):
         #Output of Dense Layers
         self.ANNout = tf.keras.layers.Dense(4)
 
-        self.indices = np.sort(np.array([np.arange(-1,-self.delay*self.time_embed*5,-self.delay*5),
-                                    np.arange(-2,-self.delay*self.time_embed*5,-self.delay*5),
-                                    np.arange(-3,-self.delay*self.time_embed*5,-self.delay*5),
-                                    np.arange(-4,-self.delay*self.time_embed*5,-self.delay*5),
-                                    np.arange(-5, -self.delay * self.time_embed * 5, -self.delay * 5)]).flatten())
+        self.indices = np.sort(np.array([np.arange(0,(self.delay*(self.time_embed-1)+1)*5,self.delay*5),
+                                    np.arange(1,(self.delay*(self.time_embed-1)+1)*5,self.delay*5),
+                                    np.arange(2,(self.delay*(self.time_embed-1)+1)*5,self.delay*5),
+                                    np.arange(3,(self.delay*(self.time_embed-1)+1)*5,self.delay*5),
+                                    np.arange(4,(self.delay*(self.time_embed-1)+1)*5, self.delay * 5)]).flatten())
 
     def call(self, inputs, training=None, mask=None):
         input_var = inputs[:, :-1]
-        selected_inputs1 = tf.gather(input_var,self.indices,axis=1)
+        selected_inputs1 =tf.transpose(tf.gather(tf.transpose(input_var),self.indices))
         h = inputs[:, -1]
         h = tf.reshape(h, (-1, 1))
         # First Pass
