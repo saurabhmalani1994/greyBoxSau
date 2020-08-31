@@ -45,8 +45,8 @@ def chemostat_full(t, var, par, u):
 
 def light_fun(t):
     try:
-        if t<96:
-            if t<48:
+        if t<96*2:
+            if t<48*2:
                 return 1
             else:
                 return 0
@@ -266,7 +266,7 @@ class RK4_Integrator_Model_7(tf.keras.Model):
         return outputs
 
 class RK4_Integrator_Model_TE(tf.keras.Model):
-    def __init__(self, HL_Nodes, Activation, time_embed):
+    def __init__(self, HL_Nodes, Activation, time_embed, delay):
 
         super(RK4_Integrator_Model_TE, self).__init__()
         # self.k23_Layer = RK_Layer(2, h)
@@ -544,4 +544,107 @@ class RK4_Integrator_Model_TE_7_CL(tf.keras.Model):
         # RK4 Output for Prediction
 
         outputs = input_var[:,-5:-1] + (1/6) * h * (k1 + 2 * k2 + 2 * k3 + k4)
+        return outputs
+
+
+class RK4_Integrator_Model_TE_7_ODE(tf.keras.Model):
+    def __init__(self, HL_Nodes, Activation, time_embed, delay):
+
+        super(RK4_Integrator_Model_TE_7_CL, self).__init__()
+        # self.k23_Layer = RK_Layer(2, h)
+        # self.k4_Layer = RK_Layer(4, h)
+        # self.sumLayer = sum_Layer(h)
+
+
+        self.time_embed = time_embed
+        self.delay = delay
+        # Hidden Layers
+        self.ANN7 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+        self.ANN6 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+        self.ANN5 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+        self.ANN4 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+        self.ANN3 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+        self.ANN2 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+        self.ANN1 = tf.keras.layers.Dense(HL_Nodes, activation=Activation)
+
+        #Output of Dense Layers
+        self.ANNout = tf.keras.layers.Dense(4*self.time_embed)
+
+        self.indices = np.sort(np.array([np.arange(0,(self.delay*(self.time_embed-1)+1)*5,self.delay*5),
+                                    np.arange(1,(self.delay*(self.time_embed-1)+1)*5,self.delay*5),
+                                    np.arange(2,(self.delay*(self.time_embed-1)+1)*5,self.delay*5),
+                                    np.arange(3,(self.delay*(self.time_embed-1)+1)*5,self.delay*5),
+                                    np.arange(4,(self.delay*(self.time_embed-1)+1)*5, self.delay * 5)]).flatten())
+
+    def call(self, inputs, training=None, mask=None):
+        input_full = inputs[:, :-1]
+        input_var = tf.reshape(tf.reshape(inputs,(-1,self.time_embed,5))[:,:,:-1],(-1,self.time_embed*4))
+        input_par = tf.reshape(tf.reshape(inputs,(-1,self.time_embed,5))[:,:,-1],(-1,self.time_embed))
+        selected_inputs1 =tf.transpose(tf.gather(tf.transpose(input_full),self.indices))
+        h = inputs[:, -1]
+        h = tf.reshape(h, (-1, 1))
+        # First Pass
+        k1 = self.ANNout(
+                 self.ANN1(
+                 self.ANN2(
+                 self.ANN3(
+                 self.ANN4(
+                 self.ANN5(
+                 self.ANN6(
+                 self.ANN7(
+                     selected_inputs1))))))))
+        t0 = input_var + k1 * h / 2
+        selected_inputs2 = tf.reshape(tf.concat([tf.reshape(t0,(-1,self.time_embed,4)), tf.reshape(input_par,(-1,self.time_embed,1))], axis=1), (-1,self.time_embed*5))
+        selected_inputs2 = tf.gather(selected_inputs2,self.indices,axis=1)
+        # Second Pass
+        k2 = self.ANNout(
+                 self.ANN1(
+                 self.ANN2(
+                 self.ANN3(
+                 self.ANN4(
+                 self.ANN5(
+                 self.ANN6(
+                 self.ANN7(
+                     selected_inputs2))))))))
+        
+        t0 = input_var + k2 * h / 2
+        selected_inputs3 = tf.reshape(tf.concat([tf.reshape(t0,(-1,self.time_embed,4)), tf.reshape(input_par,(-1,self.time_embed,1))], axis=1), (-1,self.time_embed*5))
+        selected_inputs3 = tf.gather(selected_inputs3,self.indices,axis=1)
+
+        # Third Pass
+        k3 = self.ANNout(
+                 self.ANN1(
+                 self.ANN2(
+                 self.ANN3(
+                 self.ANN4(
+                 self.ANN5(
+                 self.ANN6(
+                 self.ANN7(
+                     selected_inputs3))))))))
+
+        t0 = input_var + k3 * h
+        selected_inputs4 = tf.reshape(tf.concat([tf.reshape(t0,(-1,self.time_embed,4)), tf.reshape(input_par,(-1,self.time_embed,1))], axis=1), (-1,self.time_embed*5))
+        selected_inputs4 = tf.gather(selected_inputs4,self.indices,axis=1)
+
+
+        # Fourth Pass
+        k4 = self.ANNout(
+                 self.ANN1(
+                 self.ANN2(
+                 self.ANN3(
+                 self.ANN4(
+                 self.ANN5(
+                 self.ANN6(
+                 self.ANN7(
+                     selected_inputs4))))))))
+
+        # RK4 Output for Prediction
+
+#         outputs = input_var[:,-5:-1] + (1/6) * h * (k1 + 2 * k2 + 2 * k3 + k4)
+        t0 = input_var[:,5:]
+        t1 = input_var[:,-5:-1] + (1/6) * h * (k1 + 2 * k2 + 2 * k3 + k4)
+        t2 = input_var[:, -1]
+        t2 = tf.reshape(t2, (-1, 1))
+        selected_inputs4 = tf.concat([t0, t1, t2], axis=1)
+        selected_inputs4 = tf.gather(selected_inputs4,self.indices,axis=1)
         return outputs
